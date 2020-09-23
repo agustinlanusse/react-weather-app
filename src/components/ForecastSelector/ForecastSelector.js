@@ -21,7 +21,7 @@ function ForecastSelector(props) {
         let locationKey = new URLSearchParams(window.location.search);
         locationKey = locationKey.get('locationKey');
 
-        fetch(`http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${ locationKey }?apikey=${ apiUtils.accuWeather.apiKey }&metric=true`)
+        fetch(`https://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${ locationKey }?apikey=${ apiUtils.accuWeather.apiKey }&metric=true`)
             .then(response => response.json())
             .then(result => {
                 let res;

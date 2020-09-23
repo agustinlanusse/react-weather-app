@@ -18,13 +18,13 @@ function App() {
   const [currentConditions, setCurrentConditions] = useState();
 
   const getLocationName = (locationKey) => {
-    fetch(`http://dataservice.accuweather.com/locations/v1/${locationKey}?apikey=${apiUtils.accuWeather.apiKey}`)
+    fetch(`https://dataservice.accuweather.com/locations/v1/${locationKey}?apikey=${apiUtils.accuWeather.apiKey}`)
       .then(response => response.json())
       .then(result => setLocationName({ country: result.Country.LocalizedName, city: result.LocalizedName }));
   };
 
   const getWeekForecast = (locationKey) => {
-    fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${apiUtils.accuWeather.apiKey}&metric=true`)
+    fetch(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${apiUtils.accuWeather.apiKey}&metric=true`)
       .then(response => response.json())
       .then(result => {
         setForecast(result.DailyForecasts);
@@ -32,7 +32,7 @@ function App() {
   };
 
   const getCurrentConditions = (locationKey) => {
-    fetch(`http://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${apiUtils.accuWeather.apiKey}&details=true`)
+    fetch(`https://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${apiUtils.accuWeather.apiKey}&details=true`)
       .then(response => response.json())
       .then(result => {
         setCurrentConditions(result[0]);
@@ -42,10 +42,10 @@ function App() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     if(window.location.search.length === 0){
-      fetch('http://api.ipstack.com/check?access_key=' + apiUtils.ipstack.apiKey)
+      fetch('https://ipfind.co/me?auth=' + apiUtils.ipfind.apiKey)
         .then(response => response.json())
         .then(result => {
-          fetch('http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=' + apiUtils.accuWeather.apiKey + '&q=' + result.latitude + ',' + result.longitude)
+          fetch('https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=' + apiUtils.accuWeather.apiKey + '&q=' + result.latitude + ',' + result.longitude)
             .then(res => res.json())
             .then(json => {
               window.location.search = `?locationKey=${json.Key}`;

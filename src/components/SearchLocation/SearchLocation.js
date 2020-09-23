@@ -28,7 +28,7 @@ function SearchLocation() {
         if(inputValue.length <= 1) {
             return autoCompleteList.style.display = 'none';
         } else if(inputValue.length > 0){
-            await fetch(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${ apiUtils.accuWeather.apiKey }&q=${ inputValue }`)
+            await fetch(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${ apiUtils.accuWeather.apiKey }&q=${ inputValue }`)
             .then(response => response.json())
             .then(data => setPlaces(data));
 
