@@ -1,9 +1,9 @@
 const apiUtils = {
     accuWeather: {
-        apiKey: ''
+        apiKey: 'GWUSXp7kc1LdAxnO0qG1OJ6Jqdznb08j'
     },
     ipstack: {
-        apiKey: ''
+        apiKey: 'f21bdaadbd4fd9f71ed03bc445346a4a'
     }
 };
 
