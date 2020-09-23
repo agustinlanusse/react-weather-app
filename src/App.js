@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CurrentWeather from './components/CurrentWeather/CurrentWeather';
+import ForecastDetails from './components/ForecastDetails/ForecastDetails';
 import apiUtils from './api/apiUtils';
 import { css } from '@emotion/core';
 import BounceLoader from 'react-spinners/BounceLoader';
@@ -22,8 +23,8 @@ function App() {
       .then(result => setLocationName({ country: result.Country.LocalizedName, city: result.LocalizedName }));
   };
 
-  const getForecast = (locationKey) => {
-    fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${apiUtils.accuWeather.apiKey}`)
+  const getWeekForecast = (locationKey) => {
+    fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${apiUtils.accuWeather.apiKey}&metric=true`)
       .then(response => response.json())
       .then(result => {
         setForecast(result.DailyForecasts);
@@ -54,22 +55,32 @@ function App() {
       const urlParams = new URLSearchParams(window.location.search);
       const locationKey = urlParams.get('locationKey');
       getLocationName(locationKey);
-      getForecast(locationKey);
+      getWeekForecast(locationKey);
       getCurrentConditions(locationKey);
       setTimeout(() => setLoad(false), 2500);
     }
   }, []);
 
+  let componentRender;
+  if(load === true) {
+    componentRender = <BounceLoader size={ 80 } color={ '#d2d2d2' } css={ override } />;
+  } else {
+    componentRender =
+    <React.Fragment>
+        <main className='main-content'>
+          <CurrentWeather locationName={ locationName } currentConditions={ currentConditions } />
+          <ForecastDetails forecast={ forecast } todaysHighlights={ currentConditions } />
+        </main>
+        <footer>
+          <p className=''>Weather Application made with React and AccuWeather API.</p>
+          <p>Code available on <a href='https://github.com/alanusse/react-weather-app' target='_blank' rel='noopener noreferrer'>GitHub</a></p>
+        </footer>
+    </React.Fragment>;
+  }
 
   return (
     <div className="App">
-      { load === true ?
-          <BounceLoader
-          size={ 80 }
-          color={ '#d2d2d2' }
-          css={ override }
-          />
-        : <CurrentWeather locationName={ locationName } currentConditions={ currentConditions } /> }
+      { componentRender }
     </div>
   );
 }

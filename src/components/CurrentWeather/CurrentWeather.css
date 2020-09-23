@@ -1,5 +1,6 @@
 .CurrentWeather {
     width: 100%;
+    min-width: 350px;
     padding: 10px 20px;
     background: #ece9e6; /* fallback for old browsers */
     background: -webkit-linear-gradient(to top, #ece9e6, #ffffff); /* Chrome 10-25, Safari 5.1-6 */
@@ -54,4 +55,10 @@ hr {
     width: 100%;
     max-width: 30px;
     margin-right: 15px;
+}
+
+@media screen and (min-width: 1110px) {
+    .CurrentWeather {
+        max-width: 400px;
+    }
 }

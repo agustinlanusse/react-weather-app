@@ -1,0 +1,14 @@
+.TodaysHighlights h2 {
+    margin-top: 40px;
+}
+
+@media screen and (min-width: 625px) {
+    .TodaysHighlights {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .TodaysHighlights h2 {
+        width: 100%;
+    }
+}

@@ -1,5 +1,44 @@
 .App {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     min-height: -webkit-fill-available;
     min-height: 100vh;
+    max-width: 1400px;
+    margin: auto;
+    padding: 10px;
+}
+
+.main-content {
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+}
+
+footer {
+    background-color: #ccc;
+    padding: 10px 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 0 20px 20px;
+}
+
+footer p {
+    text-align: center;
+    font-size: 16px;
+    margin: 10px;
+}
+
+footer p a {
+    font-weight: 600;
+    color: inherit;
+}
+
+@media screen and (min-width: 1110px) {
+    .main-content {
+        flex-direction: row;
+    }
 }

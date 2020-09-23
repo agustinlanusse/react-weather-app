@@ -1,0 +1,35 @@
+.WeatherCard {
+    width: 100%;
+    max-width: 110px;
+    border-radius: 20px;
+    background-color: #fff;
+    margin-right: 10px;
+    flex: 0 0 auto;
+}
+
+.WeatherCard:last-of-type {
+    margin-right: 0;
+}
+
+.day {
+    text-align: center;
+    font-weight: 600;
+}
+
+.forecast-icon {
+    display: block;
+    width: 50px;
+    margin: auto;
+}
+
+.temperatures {
+    display: flex;
+    max-width: 60px;
+    margin: auto;
+    justify-content: space-between;
+    font-weight: 500;
+}
+
+.min-temp {
+    color: #b8b8b8;
+}
